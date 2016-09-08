@@ -5,11 +5,18 @@ public class App {
     Console myConsole = System.console();
     Game hangman = new Game();
     hangman.generateAnswer();
-    // System.out.println(hangman.getAnswer());
+    String blankWord = hangman.blanks();
     while(hangman.checkAnswer()){
-      System.out.println("Enter a letter?");
+      String updatedBlankWord = hangman.getBlankWord();
+      System.out.println(updatedBlankWord + " Enter a letter?");
       String letter = myConsole.readLine();
       hangman.letters(letter);
+      hangman.updatedBlanks(letter);
+    }
+    String displayAnswer = hangman.getAnswer();
+    String displayBlanks = hangman.getBlankWord();
+    if (displayAnswer.equals(displayBlanks)) {
+      System.out.println("Congratulations! Your word was " + displayAnswer + "!");
     }
   }
 }

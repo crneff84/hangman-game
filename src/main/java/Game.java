@@ -2,7 +2,8 @@ import java.util.Random;
 
 public class Game {
   private String mAnswer;
-  private String mLetter = "asdfgw";
+  private String mLetter = "";
+  private String mBlankWord = "";
 
 
   public String generateAnswer() {
@@ -17,9 +18,31 @@ public class Game {
     mLetter += letter;
     return mLetter;
   }
-  // public String getAnswer() {
-  //   return mAnswer;
-  // }
+
+  public String blanks() {
+    for (int i = 0; i < mAnswer.length(); i++) {
+      mBlankWord += "-";
+    }
+    return mBlankWord;
+  }
+
+  public String updatedBlanks(String letter) {
+    char charLetter = letter.charAt(0);
+    if(mAnswer.indexOf(charLetter) > -1){
+      int index = mAnswer.indexOf(charLetter);
+      StringBuilder newBlank = new StringBuilder(mBlankWord);
+      newBlank.setCharAt(index, charLetter);
+      mBlankWord = newBlank.toString();
+    }
+    return mBlankWord;
+  }
+
+  public String getBlankWord() {
+    return mBlankWord;
+  }
+  public String getAnswer() {
+    return mAnswer;
+  }
 
   // public String getLetter() {
   //   return mLetter;
